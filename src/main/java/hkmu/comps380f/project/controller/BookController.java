@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/index")
 public class BookController {
 
     @GetMapping("/login")
