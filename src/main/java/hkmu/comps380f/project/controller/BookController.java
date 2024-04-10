@@ -24,31 +24,4 @@ public class BookController {
         return "home_page";
     }
 
-
-
-
-
-    private List<Book> getSampleBooks(){
-        List<Book> books = new ArrayList<>();
-
-        Book book1 = new Book();
-        book1.setTitle("First book");
-        book1.setAuthor("author 1");
-        book1.setPrice(19.99);
-        book1.setDescription("Description of the book 1");
-        book1.setCoverPhotoUrl("");
-        book1.setAvailable(true);
-        books.add(book1);
-
-        Book book2 = new Book();
-        book2.setTitle("Second book");
-        book2.setAuthor("author 2");
-        book2.setPrice(24.99);
-        book2.setDescription("Description of the book 2");
-        book2.setCoverPhotoUrl("");
-        book2.setAvailable(false);
-        books.add(book2);
-
-        return books;
-    }
 }

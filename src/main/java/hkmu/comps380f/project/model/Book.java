@@ -2,15 +2,45 @@ package hkmu.comps380f.project.model;
 
 import java.util.List;
 
+
+
+import jakarta.persistence.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import java.util.ArrayList;
+
+
+@Entity
 public class Book {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "title")
     private String title;
+
+    @Column(name = "author")
     private String author;
+
+    @Column(name = "price")
     private double price;
+
+    @Column(name = "description")
     private String description;
+
+    @Column(name = "cover_photo_url")
     private String coverPhotoUrl;
+
+    @Column(name = "available")
     private boolean available;
-    private List<Comment> comments;
+
+    @OneToMany(mappedBy = "book", fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL, orphanRemoval = true)
+    @Fetch(FetchMode.SUBSELECT)
+    private List<Comment> comments = new ArrayList<>();
+
+    // getters and setters of all properties
 
     public Long getId() {
         return id;
@@ -74,5 +104,10 @@ public class Book {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public void deleteComment(Comment comment) {
+        comment.setBook(null);
+        this.comments.remove(comment);
     }
 }
